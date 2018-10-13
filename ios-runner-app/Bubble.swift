@@ -9,9 +9,14 @@
 import Foundation
 import UIKit
 
+
 @IBDesignable // To draw on InterfaceBuilder
 class Bubble: UIImageView {
     
+    
+    var direction  : CGFloat = 1.0
+    var label = UILabel()
+    var wait = 0
     
     @IBInspectable // To show on InterfaceBuilder
     var imageName: String = "" {
@@ -22,16 +27,88 @@ class Bubble: UIImageView {
             setNeedsLayout()  // For subviews
         }
     }
+
     
+    @IBInspectable // To show on InterfaceBuilder
     var content : String = "" {
         didSet {
             setNeedsDisplay() // To redraw when changes
             setNeedsLayout()  // For subviews
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
+            label.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
             label.text = content
+            label.isUserInteractionEnabled = false
             label.textAlignment = .center
+            label.bounds.size = self.bounds.size
+            label.center = self.center
             label.font = UIFont.systemFont(ofSize: min(self.frame.width * 0.8, self.frame.height * 0.8))
             addSubview(label)
+        }
+    }
+    
+    
+    var tapped = false
+    
+    
+    
+    
+    
+    func reset(){
+        self.frame.origin.y = UIScreen.main.bounds.height
+        let rnd = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        self.frame.origin.x = rnd * ( UIScreen.main.bounds.width - 200 ) + 100
+        let rnd1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        self.direction = round(rnd1) * 2 - 1
+        
+        self.frame.size = CGSize(width: label.frame.width , height: label.frame.width)
+        self.label.frame.origin.x = 0
+        self.label.frame.origin.y = 0
+        self.label.alpha = 1.0
+        
+        print("Direction \(direction)")
+    }
+    
+    func move(){
+        if (wait>0){
+            wait -= 1
+            return
+        }
+        if (tapped){
+            return
+        }
+        if (self.frame.origin.y < -self.frame.height){
+            self.reset()
+        }
+        let rnd1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
+        self.frame.origin.x += ( rnd1 * 7.0  - 3.0 ) + direction
+        if (self.frame.origin.x > UIScreen.main.bounds.width - 100){
+            self.frame.origin.x = UIScreen.main.bounds.width - 100
+            self.direction = -1
+        }
+        if (self.frame.origin.x < 100){
+            self.frame.origin.x = 100
+            self.direction = 1
+        }
+        self.frame.origin.y -= 3
+    }
+    
+    
+    @objc func tap(){
+        print("Tap")
+        tapped = true
+        Sound.playSound()
+        UIView.animate(withDuration: 0.1, animations: {
+            self.frame.size = CGSize(width: self.frame.width * 1.2, height: self.frame.width * 1.2)
+            self.frame.origin.x -= self.frame.width * 0.1
+            self.frame.origin.y -= self.frame.width * 0.1
+            self.label.frame.origin.x += self.frame.width * 0.1
+            self.label.frame.origin.y += self.frame.width * 0.1
+            self.label.alpha = 0.1
+            
+        }, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // change 2 to desired number of seconds
+            self.tapped = false
+            self.reset()
+            
         }
     }
     

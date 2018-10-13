@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B5398C321719FC100100DEF /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B5398C221719FC100100DEF /* pop.mp3 */; };
+		0B5398C72171A06D00100DEF /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5398C62171A06D00100DEF /* Sound.swift */; };
 		0BE69E2C21703E98003CE758 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE69E2B21703E98003CE758 /* AppDelegate.swift */; };
 		0BE69E2E21703E98003CE758 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE69E2D21703E98003CE758 /* ViewController.swift */; };
 		0BE69E3121703E98003CE758 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BE69E2F21703E98003CE758 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B5398C221719FC100100DEF /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		0B5398C62171A06D00100DEF /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		0BE69E2821703E98003CE758 /* ios-bubble-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-bubble-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BE69E2B21703E98003CE758 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BE69E2D21703E98003CE758 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +47,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B5398C82171A25F00100DEF /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				0B5398C221719FC100100DEF /* pop.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		0B5398C92171A27A00100DEF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				0BE69E47217049CD003CE758 /* bubble128.png */,
+				0BE69E41217044C2003CE758 /* bubble1024.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		0BE69E1F21703E98003CE758 = {
 			isa = PBXGroup;
 			children = (
@@ -62,8 +83,8 @@
 		0BE69E2A21703E98003CE758 /* ios-runner-app */ = {
 			isa = PBXGroup;
 			children = (
-				0BE69E47217049CD003CE758 /* bubble128.png */,
-				0BE69E41217044C2003CE758 /* bubble1024.png */,
+				0B5398C92171A27A00100DEF /* images */,
+				0B5398C82171A25F00100DEF /* sounds */,
 				0BE69E2B21703E98003CE758 /* AppDelegate.swift */,
 				0BE69E2D21703E98003CE758 /* ViewController.swift */,
 				0BE69E2F21703E98003CE758 /* Main.storyboard */,
@@ -72,6 +93,7 @@
 				0BE69E3721703E9B003CE758 /* Info.plist */,
 				0BE69E3F21703F6B003CE758 /* UIBezierPath.swift */,
 				0BE69E43217044FB003CE758 /* Bubble.swift */,
+				0B5398C62171A06D00100DEF /* Sound.swift */,
 			);
 			path = "ios-runner-app";
 			sourceTree = "<group>";
@@ -134,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B5398C321719FC100100DEF /* pop.mp3 in Resources */,
 				0BE69E42217044C2003CE758 /* bubble1024.png in Resources */,
 				0BE69E48217049CD003CE758 /* bubble128.png in Resources */,
 				0BE69E3621703E9B003CE758 /* LaunchScreen.storyboard in Resources */,
@@ -150,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BE69E4021703F6B003CE758 /* UIBezierPath.swift in Sources */,
+				0B5398C72171A06D00100DEF /* Sound.swift in Sources */,
 				0BE69E44217044FB003CE758 /* Bubble.swift in Sources */,
 				0BE69E2E21703E98003CE758 /* ViewController.swift in Sources */,
 				0BE69E2C21703E98003CE758 /* AppDelegate.swift in Sources */,
