@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B409B22217AEAF800683115 /* bomb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B409B21217AEAF700683115 /* bomb.mp3 */; };
 		0B5398C321719FC100100DEF /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B5398C221719FC100100DEF /* pop.mp3 */; };
 		0B5398C72171A06D00100DEF /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5398C62171A06D00100DEF /* Sound.swift */; };
 		0B5398CB2171A68700100DEF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5398CA2171A68700100DEF /* Default-568h@2x.png */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B409B21217AEAF700683115 /* bomb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bomb.mp3; path = ../../../../Downloads/bomb.mp3; sourceTree = "<group>"; };
 		0B5398C221719FC100100DEF /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
 		0B5398C62171A06D00100DEF /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		0B5398CA2171A68700100DEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 		0B5398C82171A25F00100DEF /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				0B409B21217AEAF700683115 /* bomb.mp3 */,
 				0B5398C221719FC100100DEF /* pop.mp3 */,
 			);
 			path = sounds;
@@ -165,6 +168,7 @@
 				0BE69E3621703E9B003CE758 /* LaunchScreen.storyboard in Resources */,
 				0BE69E3321703E9B003CE758 /* Assets.xcassets in Resources */,
 				0B5398CB2171A68700100DEF /* Default-568h@2x.png in Resources */,
+				0B409B22217AEAF800683115 /* bomb.mp3 in Resources */,
 				0BE69E3121703E98003CE758 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

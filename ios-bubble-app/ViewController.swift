@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     var bubbles = [Bubble]()
     
-    func createBubble(content: String, wait : Int)  {
+    func createBubble(content: String, wait : Int, sound: String)  {
         let bubble = Bubble()
         bubble.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         bubble.content = content
@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         bubble.addGestureRecognizer(tap)
         bubble.reset()
         bubble.wait = wait
+        bubble.sound = sound
+        bubble.respawn = bubble.sound != "bomb.mp3"
         view.addSubview(bubble)
         bubbles.append(bubble)
     }
@@ -31,12 +33,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        Sound.playSound()
+        Sound.playSound(name: "pop.mp3")
+        Sound.playSound(name: "bomb.mp3")
         
-        createBubble(content: "🍎", wait: 10)
-        createBubble(content: "🍏", wait: 40)
+        createBubbles()
         
         updateBubbles()
+    }
+    
+    func createBubbles(){
+        createBubble(content: "🍎", wait: 10, sound: "pop.mp3" )
+        createBubble(content: "🍏", wait: 40, sound: "pop.mp3")
+        createBubble(content: "💣", wait: 150, sound: "bomb.mp3")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) { // change 2 to desired number of seconds
+
+            self.createBubbles()
+        }
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer){

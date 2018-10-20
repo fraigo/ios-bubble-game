@@ -12,19 +12,19 @@ import AVFoundation
 
 class Sound: NSObject {
     
-    static var mAudioPlayer : AVAudioPlayer?
+    static var mAudioPlayer = Dictionary<String,AVAudioPlayer>()
     
-    class func loadSound(){
-        let soundFile = Bundle.main.path(forResource: "pop.mp3", ofType: nil)
+    class func loadSound(name: String){
+        let soundFile = Bundle.main.path(forResource: name, ofType: nil)
         let url = URL(fileURLWithPath: soundFile!)
-        self.mAudioPlayer = try! AVAudioPlayer(contentsOf: url as URL)
+        self.mAudioPlayer[name] = try! AVAudioPlayer(contentsOf: url as URL)
     }
 
-    class func playSound(){
-        if ( mAudioPlayer == nil){
-            loadSound()
+    class func playSound(name: String){
+        if ( mAudioPlayer[name] == nil){
+            loadSound(name: name)
         }
-        self.mAudioPlayer?.play()
+        self.mAudioPlayer[name]?.play()
     }
 
 }

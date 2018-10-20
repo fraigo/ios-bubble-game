@@ -16,7 +16,15 @@ class Bubble: UIImageView {
     
     var direction  : CGFloat = 1.0
     var label = UILabel()
-    var wait = 0
+    var defaultWait = 0
+    var sound : String = ""
+    var wait = 0 {
+        didSet {
+            defaultWait = wait
+        }
+    }
+    var respawn = true
+    var alive = true
     
     @IBInspectable // To show on InterfaceBuilder
     var imageName: String = "" {
@@ -53,21 +61,25 @@ class Bubble: UIImageView {
     
     
     func reset(){
-        self.frame.origin.y = UIScreen.main.bounds.height
+        self.frame.origin.y = UIScreen.main.bounds.height + 50
         let rnd = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-        self.frame.origin.x = rnd * ( UIScreen.main.bounds.width - 200 ) + 100
+        self.frame.origin.x = rnd * ( UIScreen.main.bounds.width + 20 )
         let rnd1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-        self.direction = round(rnd1) * 2 - 1
+        self.direction = round(rnd1 * 2) - 1
         
         self.frame.size = CGSize(width: label.frame.width , height: label.frame.width)
         self.label.frame.origin.x = 0
         self.label.frame.origin.y = 0
         self.label.alpha = 1.0
+        self.wait = defaultWait
         
         print("Direction \(direction)")
     }
     
     func move(){
+        if (!alive){
+            return
+        }
         if (wait>0){
             wait -= 1
             return
@@ -76,10 +88,14 @@ class Bubble: UIImageView {
             return
         }
         if (self.frame.origin.y < -self.frame.height){
-            self.reset()
+            if (self.respawn){
+                self.reset()
+            }else{
+                self.alive = false
+            }
         }
         let rnd1 = CGFloat(Float(arc4random()) / Float(UINT32_MAX))
-        self.frame.origin.x += ( rnd1 * 7.0  - 3.0 ) + direction
+        self.frame.origin.x += ( rnd1 * 9.0  - 4.0 ) + direction
         if (self.frame.origin.x > UIScreen.main.bounds.width - 100){
             self.frame.origin.x = UIScreen.main.bounds.width - 100
             self.direction = -1
@@ -95,7 +111,7 @@ class Bubble: UIImageView {
     @objc func tap(){
         print("Tap")
         tapped = true
-        Sound.playSound()
+        Sound.playSound(name: self.sound)
         UIView.animate(withDuration: 0.1, animations: {
             self.frame.size = CGSize(width: self.frame.width * 1.2, height: self.frame.width * 1.2)
             self.frame.origin.x -= self.frame.width * 0.1
@@ -107,7 +123,12 @@ class Bubble: UIImageView {
         }, completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // change 2 to desired number of seconds
             self.tapped = false
-            self.reset()
+            if (self.respawn){
+                self.reset()
+            }else{
+                self.alive = false
+            }
+            
             
         }
     }
