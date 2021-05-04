@@ -73,7 +73,6 @@ class Bubble: UIImageView {
         self.label.alpha = 1.0
         self.wait = defaultWait
         
-        print("Direction \(direction)")
     }
     
     func move(){

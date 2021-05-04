@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     func createBubbles(){
         createBubble(content: "🍎", wait: 10, sound: "pop.mp3" )
         createBubble(content: "🍏", wait: 40, sound: "pop.mp3")
-        createBubble(content: "💣", wait: 150, sound: "bomb.mp3")
+        createBubble(content: "💣", wait: 50, sound: "bomb.mp3")
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { // change 2 to desired number of seconds
 
